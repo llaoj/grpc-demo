@@ -45,6 +45,13 @@ func loadJobCards(id int) *gen.JobCardRp {
 	rp.Id = int64(job.Id)
 	rp.Name = job.Name
 	rp.UpdatedAt = job.UpdatedAt.String()
+
+	var company model.Company
+	rp.CompanyName = company.GetName(job.CompanyId)
+
+	if v, ok := dic.JobStatus[job.Status]; ok {
+		rp.Status = v
+	}
 	
 	return rp
 }

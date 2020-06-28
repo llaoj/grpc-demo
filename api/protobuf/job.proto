@@ -9,7 +9,6 @@ message JobRq{
 message JobCardRp{
     int64 id = 1;
     string name = 2;
-    string city_name = 3;
     string company_name = 4;
     string status = 5;
     string updated_at = 6;
