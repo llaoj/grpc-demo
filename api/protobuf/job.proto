@@ -1,0 +1,22 @@
+syntax = "proto3";
+package protobuf;
+option go_package = "./gen";
+
+message JobRq{
+    int64 id = 1;
+}
+
+message JobCardRp{
+    int64 id = 1;
+    string name = 2;
+    string city_name = 3;
+    string company_name = 4;
+    string status = 5;
+    string updated_at = 6;
+}
+
+service JobService{
+    // 单一请求应答，一对一
+    rpc GetCard (JobRq) returns (JobCardRp);
+    rpc GetCards (stream JobRq) returns (stream JobCardRp);
+}
