@@ -5,7 +5,7 @@ import (
 	"io"
 	// "fmt"
 
-	"grpc-server/api/protobuf/gen"
+	"grpc-server/protobuf/gen"
 	"grpc-server/model"
 	"grpc-server/pkg/dic"
 )

@@ -22,45 +22,17 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Generated from protobuf field <code>string city_name = 3;</code>
-     */
-    protected $city_name = '';
-    /**
-     * Generated from protobuf field <code>int64 quantity = 4;</code>
-     */
-    protected $quantity = 0;
-    /**
-     * Generated from protobuf field <code>string experience_name = 5;</code>
-     */
-    protected $experience_name = '';
-    /**
-     * Generated from protobuf field <code>string education_name = 6;</code>
-     */
-    protected $education_name = '';
-    /**
-     * Generated from protobuf field <code>string category_name = 7;</code>
-     */
-    protected $category_name = '';
-    /**
-     * Generated from protobuf field <code>string company_name = 8;</code>
+     * Generated from protobuf field <code>string company_name = 4;</code>
      */
     protected $company_name = '';
     /**
-     * Generated from protobuf field <code>string status = 9;</code>
+     * Generated from protobuf field <code>string status = 5;</code>
      */
     protected $status = '';
     /**
-     * Generated from protobuf field <code>string updated_at = 10;</code>
+     * Generated from protobuf field <code>string updated_at = 6;</code>
      */
     protected $updated_at = '';
-    /**
-     * Generated from protobuf field <code>int64 num_views = 11;</code>
-     */
-    protected $num_views = 0;
-    /**
-     * Generated from protobuf field <code>int64 num_posts = 12;</code>
-     */
-    protected $num_posts = 0;
 
     /**
      * Constructor.
@@ -70,16 +42,9 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $id
      *     @type string $name
-     *     @type string $city_name
-     *     @type int|string $quantity
-     *     @type string $experience_name
-     *     @type string $education_name
-     *     @type string $category_name
      *     @type string $company_name
      *     @type string $status
      *     @type string $updated_at
-     *     @type int|string $num_views
-     *     @type int|string $num_posts
      * }
      */
     public function __construct($data = NULL) {
@@ -132,117 +97,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string city_name = 3;</code>
-     * @return string
-     */
-    public function getCityName()
-    {
-        return $this->city_name;
-    }
-
-    /**
-     * Generated from protobuf field <code>string city_name = 3;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setCityName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->city_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 quantity = 4;</code>
-     * @return int|string
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 quantity = 4;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setQuantity($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->quantity = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string experience_name = 5;</code>
-     * @return string
-     */
-    public function getExperienceName()
-    {
-        return $this->experience_name;
-    }
-
-    /**
-     * Generated from protobuf field <code>string experience_name = 5;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setExperienceName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->experience_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string education_name = 6;</code>
-     * @return string
-     */
-    public function getEducationName()
-    {
-        return $this->education_name;
-    }
-
-    /**
-     * Generated from protobuf field <code>string education_name = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setEducationName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->education_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string category_name = 7;</code>
-     * @return string
-     */
-    public function getCategoryName()
-    {
-        return $this->category_name;
-    }
-
-    /**
-     * Generated from protobuf field <code>string category_name = 7;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setCategoryName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->category_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string company_name = 8;</code>
+     * Generated from protobuf field <code>string company_name = 4;</code>
      * @return string
      */
     public function getCompanyName()
@@ -251,7 +106,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string company_name = 8;</code>
+     * Generated from protobuf field <code>string company_name = 4;</code>
      * @param string $var
      * @return $this
      */
@@ -264,7 +119,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string status = 9;</code>
+     * Generated from protobuf field <code>string status = 5;</code>
      * @return string
      */
     public function getStatus()
@@ -273,7 +128,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string status = 9;</code>
+     * Generated from protobuf field <code>string status = 5;</code>
      * @param string $var
      * @return $this
      */
@@ -286,7 +141,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string updated_at = 10;</code>
+     * Generated from protobuf field <code>string updated_at = 6;</code>
      * @return string
      */
     public function getUpdatedAt()
@@ -295,7 +150,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string updated_at = 10;</code>
+     * Generated from protobuf field <code>string updated_at = 6;</code>
      * @param string $var
      * @return $this
      */
@@ -303,50 +158,6 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->updated_at = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 num_views = 11;</code>
-     * @return int|string
-     */
-    public function getNumViews()
-    {
-        return $this->num_views;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 num_views = 11;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setNumViews($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->num_views = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 num_posts = 12;</code>
-     * @return int|string
-     */
-    public function getNumPosts()
-    {
-        return $this->num_posts;
-    }
-
-    /**
-     * Generated from protobuf field <code>int64 num_posts = 12;</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setNumPosts($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->num_posts = $var;
 
         return $this;
     }

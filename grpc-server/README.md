@@ -20,6 +20,12 @@ type Model struct {
 [Uber Go 语言编码规范](https://github.com/xxjwxc/uber_go_guide_cn)
 
 ### protobuf
-- 1 自动生成代码, `cd proto_file_dir && protoc --go_out=plugins=grpc:. *.proto`
+- 1 自动生成代码, 在仓库根目录执行 
+
+```
+cd protobuf
+protoc --go_out=plugins=grpc:../grpc-server/protobuf/ ./*.proto
+```
+
 - 2 去掉omitempty标记, `ls *.pb.go | xargs -n1 -IX bash -c 'sed s/,omitempty// X > X.tmp && mv X{.tmp,}'`
 - 3 ... 

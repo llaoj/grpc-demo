@@ -21,6 +21,7 @@ class JobServiceClient extends \Grpc\BaseStub {
      * @param \Protobuf\JobRq $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Protobuf\JobCardRp
      */
     public function GetCard(\Protobuf\JobRq $argument,
       $metadata = [], $options = []) {
@@ -31,8 +32,10 @@ class JobServiceClient extends \Grpc\BaseStub {
     }
 
     /**
+     * 多对多
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Protobuf\JobCardRp
      */
     public function GetCards($metadata = [], $options = []) {
         return $this->_bidiRequest('/protobuf.JobService/GetCards',

@@ -15,11 +15,12 @@
 */
 
 $router->get('/', function () use ($router) {
-
-    // single
+    
     $cli = new \Protobuf\JobServiceClient('192.168.33.1:13481',[
         'credentials' => Grpc\ChannelCredentials::createInsecure()
     ]);
+
+    // 单一
     $rq = new \Protobuf\JobRq();
     $rq->setId(14490);
     list($rp, $status) = $cli->GetCard($rq)->wait();
@@ -34,12 +35,11 @@ $router->get('/', function () use ($router) {
 
     // 双工stream请求
     $call = $cli->GetCards();
-
     $rq = new \Protobuf\JobRq();
-    $rq->setId(13120);
-    $call->write($rq);
-    $rq->setId(428);
-    $call->write($rq);
+    foreach ([428, 13120] as $item) {
+        $rq->setId($item);
+        $call->write($rq);
+    }
     $call->writesDone();
 
     while ($rp = $call->read()) {

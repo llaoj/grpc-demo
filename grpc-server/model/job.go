@@ -9,7 +9,7 @@ type Job struct {
 	Name             string
 	CompanyId        int
 	Status           int
-	UpdatedAt        *time.Time
+	UpdatedAt        time.Time
 }
 
 func (Job) TableName() string {
@@ -18,8 +18,11 @@ func (Job) TableName() string {
 
 func (j *Job) Get(where map[string]interface{}) {
 	// db.Where(where).First(j)
+
+	// demo
 	j.Id = where["id"].(int)
 	j.Name = "测试工作"
 	j.CompanyId = 1
 	j.Status = 2
+	j.UpdatedAt = time.Now()
 }
