@@ -1,2 +1,3 @@
 # grpc-demo
-php client &amp; golang server
+- php client
+- golang server
