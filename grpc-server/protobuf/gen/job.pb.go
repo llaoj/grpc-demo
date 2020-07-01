@@ -29,16 +29,17 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
-type JobRq struct {
+type SalaryRange struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Min int32 `protobuf:"varint,1,opt,name=min,proto3" json:"min,omitempty"`
+	Max int32 `protobuf:"varint,2,opt,name=max,proto3" json:"max,omitempty"`
 }
 
-func (x *JobRq) Reset() {
-	*x = JobRq{}
+func (x *SalaryRange) Reset() {
+	*x = SalaryRange{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_job_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -46,13 +47,13 @@ func (x *JobRq) Reset() {
 	}
 }
 
-func (x *JobRq) String() string {
+func (x *SalaryRange) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*JobRq) ProtoMessage() {}
+func (*SalaryRange) ProtoMessage() {}
 
-func (x *JobRq) ProtoReflect() protoreflect.Message {
+func (x *SalaryRange) ProtoReflect() protoreflect.Message {
 	mi := &file_job_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -64,32 +65,38 @@ func (x *JobRq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use JobRq.ProtoReflect.Descriptor instead.
-func (*JobRq) Descriptor() ([]byte, []int) {
+// Deprecated: Use SalaryRange.ProtoReflect.Descriptor instead.
+func (*SalaryRange) Descriptor() ([]byte, []int) {
 	return file_job_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *JobRq) GetId() int64 {
+func (x *SalaryRange) GetMin() int32 {
 	if x != nil {
-		return x.Id
+		return x.Min
 	}
 	return 0
 }
 
-type JobCardRp struct {
+func (x *SalaryRange) GetMax() int32 {
+	if x != nil {
+		return x.Max
+	}
+	return 0
+}
+
+type Job struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id          int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name        string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	CompanyName string `protobuf:"bytes,4,opt,name=company_name,json=companyName,proto3" json:"company_name,omitempty"`
-	Status      string `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
-	UpdatedAt   string `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Id          int32        `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string       `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CompanyName string       `protobuf:"bytes,3,opt,name=company_name,json=companyName,proto3" json:"company_name,omitempty"`
+	SalaryRange *SalaryRange `protobuf:"bytes,4,opt,name=salary_range,json=salaryRange,proto3" json:"salary_range,omitempty"`
 }
 
-func (x *JobCardRp) Reset() {
-	*x = JobCardRp{}
+func (x *Job) Reset() {
+	*x = Job{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_job_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -97,13 +104,13 @@ func (x *JobCardRp) Reset() {
 	}
 }
 
-func (x *JobCardRp) String() string {
+func (x *Job) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*JobCardRp) ProtoMessage() {}
+func (*Job) ProtoMessage() {}
 
-func (x *JobCardRp) ProtoReflect() protoreflect.Message {
+func (x *Job) ProtoReflect() protoreflect.Message {
 	mi := &file_job_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -115,69 +122,70 @@ func (x *JobCardRp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use JobCardRp.ProtoReflect.Descriptor instead.
-func (*JobCardRp) Descriptor() ([]byte, []int) {
+// Deprecated: Use Job.ProtoReflect.Descriptor instead.
+func (*Job) Descriptor() ([]byte, []int) {
 	return file_job_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *JobCardRp) GetId() int64 {
+func (x *Job) GetId() int32 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *JobCardRp) GetName() string {
+func (x *Job) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *JobCardRp) GetCompanyName() string {
+func (x *Job) GetCompanyName() string {
 	if x != nil {
 		return x.CompanyName
 	}
 	return ""
 }
 
-func (x *JobCardRp) GetStatus() string {
+func (x *Job) GetSalaryRange() *SalaryRange {
 	if x != nil {
-		return x.Status
+		return x.SalaryRange
 	}
-	return ""
-}
-
-func (x *JobCardRp) GetUpdatedAt() string {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return ""
+	return nil
 }
 
 var File_job_proto protoreflect.FileDescriptor
 
 var file_job_proto_rawDesc = []byte{
 	0x0a, 0x09, 0x6a, 0x6f, 0x62, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x08, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x62, 0x75, 0x66, 0x22, 0x17, 0x0a, 0x05, 0x4a, 0x6f, 0x62, 0x52, 0x71, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x89,
-	0x01, 0x0a, 0x09, 0x4a, 0x6f, 0x62, 0x43, 0x61, 0x72, 0x64, 0x52, 0x70, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x4e,
-	0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x05, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x75,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x32, 0x73, 0x0a, 0x0a, 0x4a, 0x6f,
-	0x62, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2f, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x43,
-	0x61, 0x72, 0x64, 0x12, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a,
-	0x6f, 0x62, 0x52, 0x71, 0x1a, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
-	0x4a, 0x6f, 0x62, 0x43, 0x61, 0x72, 0x64, 0x52, 0x70, 0x12, 0x34, 0x0a, 0x08, 0x47, 0x65, 0x74,
-	0x43, 0x61, 0x72, 0x64, 0x73, 0x12, 0x0f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
-	0x2e, 0x4a, 0x6f, 0x62, 0x52, 0x71, 0x1a, 0x13, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x43, 0x61, 0x72, 0x64, 0x52, 0x70, 0x28, 0x01, 0x30, 0x01, 0x42,
-	0x06, 0x5a, 0x04, 0x2f, 0x67, 0x65, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x22, 0x31, 0x0a, 0x0b, 0x53, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x52,
+	0x61, 0x6e, 0x67, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x03, 0x6d, 0x69, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61, 0x78, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x05, 0x52, 0x03, 0x6d, 0x61, 0x78, 0x22, 0x86, 0x01, 0x0a, 0x03, 0x4a, 0x6f, 0x62,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x6f, 0x6d, 0x70,
+	0x61, 0x6e, 0x79, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x38, 0x0a, 0x0c, 0x73, 0x61, 0x6c, 0x61, 0x72,
+	0x79, 0x5f, 0x72, 0x61, 0x6e, 0x67, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x52,
+	0x61, 0x6e, 0x67, 0x65, 0x52, 0x0b, 0x73, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x52, 0x61, 0x6e, 0x67,
+	0x65, 0x32, 0xda, 0x01, 0x0a, 0x0a, 0x4a, 0x6f, 0x62, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x12, 0x28, 0x0a, 0x06, 0x47, 0x65, 0x74, 0x4a, 0x6f, 0x62, 0x12, 0x0d, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x22, 0x00, 0x12, 0x2f, 0x0a, 0x0b, 0x43, 0x6f,
+	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x4a, 0x6f, 0x62, 0x73, 0x12, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x22, 0x00, 0x30, 0x01, 0x12, 0x42, 0x0a, 0x0e, 0x41,
+	0x6e, 0x61, 0x6c, 0x79, 0x73, 0x69, 0x73, 0x53, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x12, 0x15, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x52,
+	0x61, 0x6e, 0x67, 0x65, 0x1a, 0x15, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x53, 0x61, 0x6c, 0x61, 0x72, 0x79, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x22, 0x00, 0x28, 0x01, 0x12,
+	0x2d, 0x0a, 0x07, 0x47, 0x65, 0x74, 0x4a, 0x6f, 0x62, 0x73, 0x12, 0x0d, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x1a, 0x0d, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4a, 0x6f, 0x62, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x06,
+	0x5a, 0x04, 0x2f, 0x67, 0x65, 0x6e, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -194,19 +202,24 @@ func file_job_proto_rawDescGZIP() []byte {
 
 var file_job_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_job_proto_goTypes = []interface{}{
-	(*JobRq)(nil),     // 0: protobuf.JobRq
-	(*JobCardRp)(nil), // 1: protobuf.JobCardRp
+	(*SalaryRange)(nil), // 0: protobuf.SalaryRange
+	(*Job)(nil),         // 1: protobuf.Job
 }
 var file_job_proto_depIdxs = []int32{
-	0, // 0: protobuf.JobService.GetCard:input_type -> protobuf.JobRq
-	0, // 1: protobuf.JobService.GetCards:input_type -> protobuf.JobRq
-	1, // 2: protobuf.JobService.GetCard:output_type -> protobuf.JobCardRp
-	1, // 3: protobuf.JobService.GetCards:output_type -> protobuf.JobCardRp
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: protobuf.Job.salary_range:type_name -> protobuf.SalaryRange
+	1, // 1: protobuf.JobService.GetJob:input_type -> protobuf.Job
+	1, // 2: protobuf.JobService.CompanyJobs:input_type -> protobuf.Job
+	0, // 3: protobuf.JobService.AnalysisSalary:input_type -> protobuf.SalaryRange
+	1, // 4: protobuf.JobService.GetJobs:input_type -> protobuf.Job
+	1, // 5: protobuf.JobService.GetJob:output_type -> protobuf.Job
+	1, // 6: protobuf.JobService.CompanyJobs:output_type -> protobuf.Job
+	0, // 7: protobuf.JobService.AnalysisSalary:output_type -> protobuf.SalaryRange
+	1, // 8: protobuf.JobService.GetJobs:output_type -> protobuf.Job
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_job_proto_init() }
@@ -216,7 +229,7 @@ func file_job_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_job_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*JobRq); i {
+			switch v := v.(*SalaryRange); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -228,7 +241,7 @@ func file_job_proto_init() {
 			}
 		}
 		file_job_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*JobCardRp); i {
+			switch v := v.(*Job); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -272,10 +285,14 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type JobServiceClient interface {
-	// 单一请求应答，一对一
-	GetCard(ctx context.Context, in *JobRq, opts ...grpc.CallOption) (*JobCardRp, error)
+	// 一对一
+	GetJob(ctx context.Context, in *Job, opts ...grpc.CallOption) (*Job, error)
+	// 一对多
+	CompanyJobs(ctx context.Context, in *Job, opts ...grpc.CallOption) (JobService_CompanyJobsClient, error)
+	// 多对一
+	AnalysisSalary(ctx context.Context, opts ...grpc.CallOption) (JobService_AnalysisSalaryClient, error)
 	// 多对多
-	GetCards(ctx context.Context, opts ...grpc.CallOption) (JobService_GetCardsClient, error)
+	GetJobs(ctx context.Context, opts ...grpc.CallOption) (JobService_GetJobsClient, error)
 }
 
 type jobServiceClient struct {
@@ -286,40 +303,106 @@ func NewJobServiceClient(cc grpc.ClientConnInterface) JobServiceClient {
 	return &jobServiceClient{cc}
 }
 
-func (c *jobServiceClient) GetCard(ctx context.Context, in *JobRq, opts ...grpc.CallOption) (*JobCardRp, error) {
-	out := new(JobCardRp)
-	err := c.cc.Invoke(ctx, "/protobuf.JobService/GetCard", in, out, opts...)
+func (c *jobServiceClient) GetJob(ctx context.Context, in *Job, opts ...grpc.CallOption) (*Job, error) {
+	out := new(Job)
+	err := c.cc.Invoke(ctx, "/protobuf.JobService/GetJob", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *jobServiceClient) GetCards(ctx context.Context, opts ...grpc.CallOption) (JobService_GetCardsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_JobService_serviceDesc.Streams[0], "/protobuf.JobService/GetCards", opts...)
+func (c *jobServiceClient) CompanyJobs(ctx context.Context, in *Job, opts ...grpc.CallOption) (JobService_CompanyJobsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_JobService_serviceDesc.Streams[0], "/protobuf.JobService/CompanyJobs", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &jobServiceGetCardsClient{stream}
+	x := &jobServiceCompanyJobsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	return x, nil
 }
 
-type JobService_GetCardsClient interface {
-	Send(*JobRq) error
-	Recv() (*JobCardRp, error)
+type JobService_CompanyJobsClient interface {
+	Recv() (*Job, error)
 	grpc.ClientStream
 }
 
-type jobServiceGetCardsClient struct {
+type jobServiceCompanyJobsClient struct {
 	grpc.ClientStream
 }
 
-func (x *jobServiceGetCardsClient) Send(m *JobRq) error {
+func (x *jobServiceCompanyJobsClient) Recv() (*Job, error) {
+	m := new(Job)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *jobServiceClient) AnalysisSalary(ctx context.Context, opts ...grpc.CallOption) (JobService_AnalysisSalaryClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_JobService_serviceDesc.Streams[1], "/protobuf.JobService/AnalysisSalary", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &jobServiceAnalysisSalaryClient{stream}
+	return x, nil
+}
+
+type JobService_AnalysisSalaryClient interface {
+	Send(*SalaryRange) error
+	CloseAndRecv() (*SalaryRange, error)
+	grpc.ClientStream
+}
+
+type jobServiceAnalysisSalaryClient struct {
+	grpc.ClientStream
+}
+
+func (x *jobServiceAnalysisSalaryClient) Send(m *SalaryRange) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *jobServiceGetCardsClient) Recv() (*JobCardRp, error) {
-	m := new(JobCardRp)
+func (x *jobServiceAnalysisSalaryClient) CloseAndRecv() (*SalaryRange, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(SalaryRange)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *jobServiceClient) GetJobs(ctx context.Context, opts ...grpc.CallOption) (JobService_GetJobsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_JobService_serviceDesc.Streams[2], "/protobuf.JobService/GetJobs", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &jobServiceGetJobsClient{stream}
+	return x, nil
+}
+
+type JobService_GetJobsClient interface {
+	Send(*Job) error
+	Recv() (*Job, error)
+	grpc.ClientStream
+}
+
+type jobServiceGetJobsClient struct {
+	grpc.ClientStream
+}
+
+func (x *jobServiceGetJobsClient) Send(m *Job) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *jobServiceGetJobsClient) Recv() (*Job, error) {
+	m := new(Job)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -328,65 +411,122 @@ func (x *jobServiceGetCardsClient) Recv() (*JobCardRp, error) {
 
 // JobServiceServer is the server API for JobService service.
 type JobServiceServer interface {
-	// 单一请求应答，一对一
-	GetCard(context.Context, *JobRq) (*JobCardRp, error)
+	// 一对一
+	GetJob(context.Context, *Job) (*Job, error)
+	// 一对多
+	CompanyJobs(*Job, JobService_CompanyJobsServer) error
+	// 多对一
+	AnalysisSalary(JobService_AnalysisSalaryServer) error
 	// 多对多
-	GetCards(JobService_GetCardsServer) error
+	GetJobs(JobService_GetJobsServer) error
 }
 
 // UnimplementedJobServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedJobServiceServer struct {
 }
 
-func (*UnimplementedJobServiceServer) GetCard(context.Context, *JobRq) (*JobCardRp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCard not implemented")
+func (*UnimplementedJobServiceServer) GetJob(context.Context, *Job) (*Job, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (*UnimplementedJobServiceServer) GetCards(JobService_GetCardsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetCards not implemented")
+func (*UnimplementedJobServiceServer) CompanyJobs(*Job, JobService_CompanyJobsServer) error {
+	return status.Errorf(codes.Unimplemented, "method CompanyJobs not implemented")
+}
+func (*UnimplementedJobServiceServer) AnalysisSalary(JobService_AnalysisSalaryServer) error {
+	return status.Errorf(codes.Unimplemented, "method AnalysisSalary not implemented")
+}
+func (*UnimplementedJobServiceServer) GetJobs(JobService_GetJobsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetJobs not implemented")
 }
 
 func RegisterJobServiceServer(s *grpc.Server, srv JobServiceServer) {
 	s.RegisterService(&_JobService_serviceDesc, srv)
 }
 
-func _JobService_GetCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JobRq)
+func _JobService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Job)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(JobServiceServer).GetCard(ctx, in)
+		return srv.(JobServiceServer).GetJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/protobuf.JobService/GetCard",
+		FullMethod: "/protobuf.JobService/GetJob",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JobServiceServer).GetCard(ctx, req.(*JobRq))
+		return srv.(JobServiceServer).GetJob(ctx, req.(*Job))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _JobService_GetCards_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(JobServiceServer).GetCards(&jobServiceGetCardsServer{stream})
+func _JobService_CompanyJobs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Job)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(JobServiceServer).CompanyJobs(m, &jobServiceCompanyJobsServer{stream})
 }
 
-type JobService_GetCardsServer interface {
-	Send(*JobCardRp) error
-	Recv() (*JobRq, error)
+type JobService_CompanyJobsServer interface {
+	Send(*Job) error
 	grpc.ServerStream
 }
 
-type jobServiceGetCardsServer struct {
+type jobServiceCompanyJobsServer struct {
 	grpc.ServerStream
 }
 
-func (x *jobServiceGetCardsServer) Send(m *JobCardRp) error {
+func (x *jobServiceCompanyJobsServer) Send(m *Job) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *jobServiceGetCardsServer) Recv() (*JobRq, error) {
-	m := new(JobRq)
+func _JobService_AnalysisSalary_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(JobServiceServer).AnalysisSalary(&jobServiceAnalysisSalaryServer{stream})
+}
+
+type JobService_AnalysisSalaryServer interface {
+	SendAndClose(*SalaryRange) error
+	Recv() (*SalaryRange, error)
+	grpc.ServerStream
+}
+
+type jobServiceAnalysisSalaryServer struct {
+	grpc.ServerStream
+}
+
+func (x *jobServiceAnalysisSalaryServer) SendAndClose(m *SalaryRange) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *jobServiceAnalysisSalaryServer) Recv() (*SalaryRange, error) {
+	m := new(SalaryRange)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _JobService_GetJobs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(JobServiceServer).GetJobs(&jobServiceGetJobsServer{stream})
+}
+
+type JobService_GetJobsServer interface {
+	Send(*Job) error
+	Recv() (*Job, error)
+	grpc.ServerStream
+}
+
+type jobServiceGetJobsServer struct {
+	grpc.ServerStream
+}
+
+func (x *jobServiceGetJobsServer) Send(m *Job) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *jobServiceGetJobsServer) Recv() (*Job, error) {
+	m := new(Job)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -398,14 +538,24 @@ var _JobService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*JobServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetCard",
-			Handler:    _JobService_GetCard_Handler,
+			MethodName: "GetJob",
+			Handler:    _JobService_GetJob_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetCards",
-			Handler:       _JobService_GetCards_Handler,
+			StreamName:    "CompanyJobs",
+			Handler:       _JobService_CompanyJobs_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "AnalysisSalary",
+			Handler:       _JobService_AnalysisSalary_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "GetJobs",
+			Handler:       _JobService_GetJobs_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

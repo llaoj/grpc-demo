@@ -8,13 +8,9 @@ import (
 
 	"grpc-server/protobuf/gen"
 	"grpc-server/app"
-	"grpc-server/config"
-	// "grpc-server/model"
 )
 
 func main() {
-	config.Setup()
-	// model.Setup()
 
 	port := "13481"
 	lis, err := net.Listen("tcp", ":"+port)

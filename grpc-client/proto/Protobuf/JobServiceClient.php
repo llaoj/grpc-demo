@@ -17,17 +17,44 @@ class JobServiceClient extends \Grpc\BaseStub {
     }
 
     /**
-     * 单一请求应答，一对一
-     * @param \Protobuf\JobRq $argument input argument
+     * 一对一
+     * @param \Protobuf\Job $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Protobuf\JobCardRp
+     * @return \Protobuf\Job
      */
-    public function GetCard(\Protobuf\JobRq $argument,
+    public function GetJob(\Protobuf\Job $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/protobuf.JobService/GetCard',
+        return $this->_simpleRequest('/protobuf.JobService/GetJob',
         $argument,
-        ['\Protobuf\JobCardRp', 'decode'],
+        ['\Protobuf\Job', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * 一对多
+     * @param \Protobuf\Job $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Protobuf\Job
+     */
+    public function CompanyJobs(\Protobuf\Job $argument,
+      $metadata = [], $options = []) {
+        return $this->_serverStreamRequest('/protobuf.JobService/CompanyJobs',
+        $argument,
+        ['\Protobuf\Job', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * 多对一
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Protobuf\SalaryRange
+     */
+    public function AnalysisSalary($metadata = [], $options = []) {
+        return $this->_clientStreamRequest('/protobuf.JobService/AnalysisSalary',
+        ['\Protobuf\SalaryRange','decode'],
         $metadata, $options);
     }
 
@@ -35,11 +62,11 @@ class JobServiceClient extends \Grpc\BaseStub {
      * 多对多
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Protobuf\JobCardRp
+     * @return \Protobuf\Job
      */
-    public function GetCards($metadata = [], $options = []) {
-        return $this->_bidiRequest('/protobuf.JobService/GetCards',
-        ['\Protobuf\JobCardRp','decode'],
+    public function GetJobs($metadata = [], $options = []) {
+        return $this->_bidiRequest('/protobuf.JobService/GetJobs',
+        ['\Protobuf\Job','decode'],
         $metadata, $options);
     }
 

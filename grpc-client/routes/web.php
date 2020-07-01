@@ -20,33 +20,50 @@ $router->get('/', function () use ($router) {
         'credentials' => Grpc\ChannelCredentials::createInsecure()
     ]);
 
-    // 单一
-    $rq = new \Protobuf\JobRq();
+
+
+    echo "执行 一对一 方法...", '<br/>';
+    $rq = new \Protobuf\Job();
     $rq->setId(14490);
-    list($rp, $status) = $cli->GetCard($rq)->wait();
+    list($rp, $status) = $cli->GetJob($rq)->wait();
     if (!$rp) {
         echo json_encode($status);
         return;
     }
-    //序列化为string
+    // echo "name: ".$rp->getName(), '<br/>';
+    // 序列化为string
     echo $rp->serializeToJsonString(), '<br/>';
 
+    echo "执行 一对多 方法...", '<br/>';
+    $rq = new \Protobuf\Job();
+    $rq->setCompanyName("B技术公司");
+    $call = $cli->CompanyJobs($rq);
+    $stream = $call->responses();
+    foreach ($stream as $s) {
+        //序列化为string
+        echo $s->serializeToJsonString(), '<br/>';
+    }
 
+    echo "执行 多对一 方法...", '<br/>';
+    $call = $cli->AnalysisSalary();
+    for ($i = 0; $i < 3; $i++) {
+        $sr = new \Protobuf\SalaryRange();
+        $sr->setMin(10+$i);
+        $sr->setMax(15+$i);
+        $call->write($sr);
+    }
+    list($rp, $status) = $call->wait();
+    echo $rp->serializeToJsonString(), '<br/>';
 
-    // 双工stream请求
-    $call = $cli->GetCards();
-    $rq = new \Protobuf\JobRq();
-    foreach ([428, 13120] as $item) {
-        $rq->setId($item);
+    echo "执行 多对多 方法...", '<br/>';
+    $call = $cli->GetJobs();
+    $rq = new \Protobuf\Job();
+    for ($i = 10; $i < 14; $i++) {
+        $rq->setId($i);
         $call->write($rq);
     }
     $call->writesDone();
-
     while ($rp = $call->read()) {
-        if (!$rp) {
-            echo json_encode($status);
-            return;
-        }
         //序列化为string
         echo $rp->serializeToJsonString(), '<br/>';
     }

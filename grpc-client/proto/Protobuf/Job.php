@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>protobuf.JobCardRp</code>
+ * Generated from protobuf message <code>protobuf.Job</code>
  */
-class JobCardRp extends \Google\Protobuf\Internal\Message
+class Job extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>int64 id = 1;</code>
+     * Generated from protobuf field <code>int32 id = 1;</code>
      */
     protected $id = 0;
     /**
@@ -22,17 +22,13 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Generated from protobuf field <code>string company_name = 4;</code>
+     * Generated from protobuf field <code>string company_name = 3;</code>
      */
     protected $company_name = '';
     /**
-     * Generated from protobuf field <code>string status = 5;</code>
+     * Generated from protobuf field <code>.protobuf.SalaryRange salary_range = 4;</code>
      */
-    protected $status = '';
-    /**
-     * Generated from protobuf field <code>string updated_at = 6;</code>
-     */
-    protected $updated_at = '';
+    protected $salary_range = null;
 
     /**
      * Constructor.
@@ -40,11 +36,10 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int|string $id
+     *     @type int $id
      *     @type string $name
      *     @type string $company_name
-     *     @type string $status
-     *     @type string $updated_at
+     *     @type \Protobuf\SalaryRange $salary_range
      * }
      */
     public function __construct($data = NULL) {
@@ -53,8 +48,8 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int64 id = 1;</code>
-     * @return int|string
+     * Generated from protobuf field <code>int32 id = 1;</code>
+     * @return int
      */
     public function getId()
     {
@@ -62,13 +57,13 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>int64 id = 1;</code>
-     * @param int|string $var
+     * Generated from protobuf field <code>int32 id = 1;</code>
+     * @param int $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkInt64($var);
+        GPBUtil::checkInt32($var);
         $this->id = $var;
 
         return $this;
@@ -97,7 +92,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string company_name = 4;</code>
+     * Generated from protobuf field <code>string company_name = 3;</code>
      * @return string
      */
     public function getCompanyName()
@@ -106,7 +101,7 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string company_name = 4;</code>
+     * Generated from protobuf field <code>string company_name = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -119,45 +114,23 @@ class JobCardRp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string status = 5;</code>
-     * @return string
+     * Generated from protobuf field <code>.protobuf.SalaryRange salary_range = 4;</code>
+     * @return \Protobuf\SalaryRange
      */
-    public function getStatus()
+    public function getSalaryRange()
     {
-        return $this->status;
+        return $this->salary_range;
     }
 
     /**
-     * Generated from protobuf field <code>string status = 5;</code>
-     * @param string $var
+     * Generated from protobuf field <code>.protobuf.SalaryRange salary_range = 4;</code>
+     * @param \Protobuf\SalaryRange $var
      * @return $this
      */
-    public function setStatus($var)
+    public function setSalaryRange($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->status = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string updated_at = 6;</code>
-     * @return string
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Generated from protobuf field <code>string updated_at = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setUpdatedAt($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->updated_at = $var;
+        GPBUtil::checkMessage($var, \Protobuf\SalaryRange::class);
+        $this->salary_range = $var;
 
         return $this;
     }

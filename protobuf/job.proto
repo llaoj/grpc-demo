@@ -2,22 +2,28 @@ syntax = "proto3";
 package protobuf;
 option go_package = "/gen";
 
-message JobRq{
-    int64 id = 1;
+message SalaryRange {
+    int32 min = 1;
+    int32 max = 2;
 }
 
-message JobCardRp{
-    int64 id = 1;
+message Job {
+    int32 id = 1;
     string name = 2;
-    string company_name = 4;
-    string status = 5;
-    string updated_at = 6;
+    string company_name = 3;
+    SalaryRange salary_range = 4;
 }
 
 service JobService{
-    // 单一请求应答，一对一
-    rpc GetCard (JobRq) returns (JobCardRp);
+    // 一对一
+    rpc GetJob (Job) returns (Job) {}
+
+    // 一对多
+    rpc CompanyJobs (Job) returns (stream Job) {}
+
+    // 多对一
+    rpc AnalysisSalary (stream SalaryRange) returns (SalaryRange) {}
     
     // 多对多
-    rpc GetCards (stream JobRq) returns (stream JobCardRp);
+    rpc GetJobs (stream Job) returns (stream Job) {}
 }
