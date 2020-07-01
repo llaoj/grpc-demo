@@ -20,8 +20,6 @@ $router->get('/', function () use ($router) {
         'credentials' => Grpc\ChannelCredentials::createInsecure()
     ]);
 
-
-
     echo "执行 一对一 方法...", '<br/>';
     $rq = new \Protobuf\Job();
     $rq->setId(14490);
