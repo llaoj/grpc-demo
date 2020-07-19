@@ -16,7 +16,7 @@
 
 $router->get('/', function () use ($router) {
     
-    $cli = new \Protobuf\JobServiceClient('192.168.33.1:13481',[
+    $cli = new \Protobuf\JobServiceClient('127.0.0.1:13481',[
         'credentials' => Grpc\ChannelCredentials::createInsecure()
     ]);
 
@@ -66,5 +66,5 @@ $router->get('/', function () use ($router) {
         echo $rp->serializeToJsonString(), '<br/>';
     }
 
-    // return $router->app->version();
+    return $router->app->version();
 });
